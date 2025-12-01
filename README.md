@@ -2,7 +2,7 @@
 
 **Sasta Claude Code** is a CLI-based AI agent capable of exploring local codebases, diagnosing issues, and executing complex programming tasks.
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 
@@ -31,7 +31,7 @@
    GEMINI_API_KEY=your_api_key_here
    ```
 
-## 🏃‍♂️ How to Run
+## How to Run
 
 Run the main script to start the interactive session. By default, it operates in the `./calculator` directory (configurable).
 
@@ -39,7 +39,7 @@ Run the main script to start the interactive session. By default, it operates in
 uv run main.py "your prompt" --verbose #optional
 ```
 
-## 📂 Project Structure
+## Project Structure
 
 Here is a breakdown of the codebase to help you understand how the agent works:
 
