@@ -7,6 +7,8 @@ from prompts import system_prompt
 from available_functions import available_functions
 from functions.call_function import call_function
 
+messages = []
+
 def main():
     load_dotenv()
 
@@ -31,8 +33,14 @@ def main():
     messages = [
         types.Content(role="user", parts=[types.Part(text=user_prompt)]),
     ]
-
-    generate_content(client, messages, verbose)
+    try:
+        for i in range(0,20):
+            final_response = generate_content(client, messages, verbose)
+            if final_response:
+                print(f"Final Response:\n{final_response}")
+                break
+    except Exception as e:
+        print(f"Error in main: {e}")
 
 def generate_content(client, messages, verbose):
     response = client.models.generate_content(
@@ -45,6 +53,9 @@ def generate_content(client, messages, verbose):
     if verbose:
         print("Prompt tokens:", response.usage_metadata.prompt_token_count)
         print("Response tokens:", response.usage_metadata.candidates_token_count)
+    
+    if response.candidates[0].content:
+        messages.append(response.candidates[0].content)
     
     if not response.function_calls:
         return response.text
@@ -63,6 +74,10 @@ def generate_content(client, messages, verbose):
 
         if not function_responses:
             raise Exception("no function responses generated, exiting.")
+    messages.append(types.Content(
+        role="user",
+        parts=function_responses
+    ))
 
 if __name__ == "__main__":
     main()
