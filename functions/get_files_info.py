@@ -1,5 +1,4 @@
 import os
-from google import genai
 from google.genai import types
 
 schema_get_files_info = types.FunctionDeclaration(
@@ -16,7 +15,7 @@ schema_get_files_info = types.FunctionDeclaration(
     ),
 )
 
-def get_files_info(working_directory="calculator",directory="."):
+def get_files_info(working_directory,directory="."):
     try:
         full_path = os.path.join(working_directory,directory)
         abs_path_wd = os.path.abspath(working_directory)
