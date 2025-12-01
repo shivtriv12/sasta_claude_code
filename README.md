@@ -1,4 +1,4 @@
-# Sasta Claude Code 🤖
+# Sasta Claude Code
 
 **Sasta Claude Code** is a CLI-based AI agent capable of exploring local codebases, diagnosing issues, and executing complex programming tasks.
 
